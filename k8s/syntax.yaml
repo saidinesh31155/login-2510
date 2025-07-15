@@ -1,0 +1,39 @@
+# IN YAML means comment
+
+# We can use .yaml or .yml as extension
+
+# We can use any name,but preferred is object name or app name --> pod.yaml or nginx.yaml
+
+# We are learning yaml for kubernetes 
+
+# To work with kubernetes we need to know these things:
+  # simple key values --> key value pair(single)
+  # Dictonaries/map --> used to store set of key values
+  # lists/arrays --> multiple items 
+
+# Simple key value
+  # key: value
+key: value 
+name: ravi 
+city: hyderabad
+zip: 500081
+
+# Dictonaries/map
+apple:
+  size: medium
+  colour: red 
+  weight: 250grms
+
+person:
+  name: dinesh
+  age: 24
+  country: india
+
+# lists/arrays
+courses:
+- aws
+- python
+- azure
+- devops
+
+  
