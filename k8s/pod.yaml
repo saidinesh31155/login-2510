@@ -1,7 +1,7 @@
 # pod maifest for nginx app
 
 apiVersion: v1 #simple key value
-kind: pod # simple key value
+kind: Pod # simple key value
 metadata: # dictonary
   name: nginx-pod #simple key vaule
 spec: # dictonary
