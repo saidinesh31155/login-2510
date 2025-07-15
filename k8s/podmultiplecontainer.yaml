@@ -1,0 +1,16 @@
+# pod maifest for nginx app
+
+apiVersion: v1 #simple key value
+kind: Pod # simple key value
+metadata: # dictonary
+  name: nginx-pod #simple key vaule
+spec: # dictonary
+  containers: # list 
+  - name: c1 
+    image: nginx
+    ports:
+    - containerport: 80  
+  - name: c2
+    image: nginx
+    ports:
+    - containerport: 80
