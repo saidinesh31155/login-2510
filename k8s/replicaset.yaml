@@ -5,7 +5,7 @@ metadata:
   name: nginx
 spec:
   # 1 Pod should exist at all times.
-  replicas: 1
+  replicas: 1 # pod should always run 
   selector:
     matchLabels:
       app: nginx
