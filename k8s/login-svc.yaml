@@ -1,0 +1,12 @@
+# Service Template with NodePort
+apiVersion: v1
+kind: Service
+metadata:
+  name: login-svc
+spec:
+  type: NodePort
+  selector:
+    app: login
+  ports:
+    - port: 80
+      nodePort: 30008
