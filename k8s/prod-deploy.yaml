@@ -1,19 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: lms
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: nginx
+      app: lms
   template:
     metadata:
       labels:
-        app: nginx
+        app: lms
     spec:
       containers:
       - name: c1
-        image: nginx
+        image: saidinesh12/react-app
         ports:
         - containerPort: 80
+---  
+apiVersion: v1
+kind: Service
+metadata:
+  name: lms-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: lms
+  ports:
+    - port: 80     
