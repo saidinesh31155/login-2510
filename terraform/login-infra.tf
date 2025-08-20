@@ -36,3 +36,27 @@ resource "azurerm_subnet" "db-sn" {
   address_prefixes     = ["10.0.3.0/24"]
 } 
 
+#web public ip
+resource "azurerm_public_ip" "web-pip" {
+  name                = "login-web-pip"
+  resource_group_name = azurerm_resource_group.login-rg.name
+  location            = azurerm_resource_group.login-rg.location
+  allocation_method   = "Static"
+
+  tags = {
+    environment = "web"
+  }
+}
+
+#api public ip
+resource "azurerm_public_ip" "api-pip" {
+  name                = "login-api-pip"
+  resource_group_name = azurerm_resource_group.login-rg.name
+  location            = azurerm_resource_group.login-rg.location
+  allocation_method   = "Static"
+
+  tags = {
+    environment = "api"
+  }
+}
+
