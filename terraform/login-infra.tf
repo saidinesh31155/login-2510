@@ -183,7 +183,7 @@ resource "azurerm_network_interface" "web-nic" {
     name                          = "internal"
     subnet_id                     = azurerm_subnet.web-sn.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.web-pip
+    public_ip_address_id          = azurerm_public_ip.web-pip.id
   }
 }
 
@@ -192,6 +192,8 @@ resource "azurerm_network_interface_security_group_association" "login-web-nic-n
   network_interface_id      = azurerm_network_interface.web-nic.id
   network_security_group_id = azurerm_network_security_group.web-nsg.id
 }
+
+
 
 
 
