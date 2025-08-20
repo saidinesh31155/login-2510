@@ -158,9 +158,9 @@ resource "azurerm_network_security_rule" "db-ssh" {
   network_security_group_name = azurerm_network_security_group.db-nsg.name
 }
 
-#db http
-resource "azurerm_network_security_rule" "db-http" {
-  name                        = "login-db-http"
+#db postgres
+resource "azurerm_network_security_rule" "db-postgres" {
+  name                        = "login-db-postgres"
   priority                    = 110
   direction                   = "Inbound"
   access                      = "Allow"
