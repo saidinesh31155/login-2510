@@ -60,3 +60,23 @@ resource "azurerm_public_ip" "api-pip" {
   }
 }
 
+#web-nsg
+resource "azurerm_network_security_group" "web-nsg" {
+  name                = "login-web-nsg"
+  location            = azurerm_resource_group.login-rg.location
+  resource_group_name = azurerm_resource_group.login-rg.name
+}
+
+#api-nsg
+resource "azurerm_network_security_group" "api-nsg" {
+  name                = "login-api-nsg"
+  location            = azurerm_resource_group.login-rg.location
+  resource_group_name = azurerm_resource_group.login-rg.name
+}
+
+#db-nsg
+resource "azurerm_network_security_group" "db-nsg" {
+  name                = "login-db-nsg"
+  location            = azurerm_resource_group.login-rg.location
+  resource_group_name = azurerm_resource_group.login-rg.name
+}
