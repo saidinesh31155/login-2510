@@ -42,6 +42,7 @@ resource "azurerm_public_ip" "web-pip" {
   resource_group_name = azurerm_resource_group.login-rg.name
   location            = azurerm_resource_group.login-rg.location
   allocation_method   = "Static"
+  sku                 = "Standard"
 
   tags = {
     environment = "web"
@@ -54,6 +55,7 @@ resource "azurerm_public_ip" "api-pip" {
   resource_group_name = azurerm_resource_group.login-rg.name
   location            = azurerm_resource_group.login-rg.location
   allocation_method   = "Static"
+  sku                 = "Standard"
 
   tags = {
     environment = "api"
