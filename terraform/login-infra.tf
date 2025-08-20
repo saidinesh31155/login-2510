@@ -87,7 +87,7 @@ resource "azurerm_network_security_group" "db-nsg" {
 resource "azurerm_network_security_rule" "web-ssh" {
   name                        = "login-web-ssh"
   priority                    = 100
-  direction                   = "inbound"
+  direction                   = "Inbound"
   access                      = "Allow"
   protocol                    = "Tcp"
   source_port_range           = "*"
@@ -102,7 +102,7 @@ resource "azurerm_network_security_rule" "web-ssh" {
 resource "azurerm_network_security_rule" "web-http" {
   name                        = "login-web-http"
   priority                    = 110
-  direction                   = "inbound"
+  direction                   = "Inbound"
   access                      = "Allow"
   protocol                    = "Tcp"
   source_port_range           = "*"
