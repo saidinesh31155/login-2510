@@ -113,3 +113,34 @@ resource "azurerm_network_security_rule" "web-http" {
   network_security_group_name = azurerm_network_security_group.web-nsg.name
 }
 
+#api ssh
+resource "azurerm_network_security_rule" "api-ssh" {
+  name                        = "login-api-ssh"
+  priority                    = 100
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  destination_port_range      = "22"
+  source_address_prefix       = "*"
+  destination_address_prefix  = "*"
+  resource_group_name         = azurerm_resource_group.login-rg.name
+  network_security_group_name = azurerm_network_security_group.api-nsg.name
+}
+
+#api http
+resource "azurerm_network_security_rule" "api-http" {
+  name                        = "login-api-http"
+  priority                    = 110
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  destination_port_range      = "8080"
+  source_address_prefix       = "*"
+  destination_address_prefix  = "*"
+  resource_group_name         = azurerm_resource_group.login-rg.name
+  network_security_group_name = azurerm_network_security_group.api-nsg.name
+}
+
+
