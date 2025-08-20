@@ -239,7 +239,7 @@ resource "azurerm_linux_virtual_machine" "login-vm" {
   location            = azurerm_resource_group.login-rg.location
   size                = "Standard_F2"
   admin_username      = "ubuntu"
-  custom_data         = filebase64("script.sh")
+  custom_data         = filebase64("scripts.sh")
   network_interface_ids = [
     azurerm_network_interface.web-nic.id,
   ]
