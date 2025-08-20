@@ -69,71 +69,11 @@ resource "azurerm_network_security_group" "web-nsg" {
   resource_group_name = azurerm_resource_group.login-rg.name
 }
 
-#web-nsg-ssh
-resource "azurerm_network_security_rule" "web-nsg-ssh" {
-  name                        = "login-web-ssh"
-  priority                    = 100
-  direction                   = "inbound"
-  access                      = "Allow"
-  protocol                    = "Tcp"
-  source_port_range           = "*"
-  destination_port_range      = "22"
-  source_address_prefix       = "*"
-  destination_address_prefix  = "*"
-  resource_group_name         = azurerm_resource_group.login-rg.name
-  network_security_group_name = azurerm_network_security_group.login-web-nsg.name
-}
-
-#web-nsg-http
-resource "azurerm_network_security_rule" "web-nsg-http" {
-  name                        = "login-web-http"
-  priority                    = 110
-  direction                   = "inbound"
-  access                      = "Allow"
-  protocol                    = "Tcp"
-  source_port_range           = "*"
-  destination_port_range      = "80"
-  source_address_prefix       = "*"
-  destination_address_prefix  = "*"
-  resource_group_name         = azurerm_resource_group.login-rg.name
-  network_security_group_name = azurerm_network_security_group.login-web-nsg.name
-}
-
 #api-nsg
 resource "azurerm_network_security_group" "api-nsg" {
   name                = "login-api-nsg"
   location            = azurerm_resource_group.login-rg.location
   resource_group_name = azurerm_resource_group.login-rg.name
-}
-
-#api-nsg-ssh
-resource "azurerm_network_security_rule" "api-nsg-ssh" {
-  name                        = "login-api-ssh"
-  priority                    = 100
-  direction                   = "inbound"
-  access                      = "Allow"
-  protocol                    = "Tcp"
-  source_port_range           = "*"
-  destination_port_range      = "22"
-  source_address_prefix       = "*"
-  destination_address_prefix  = "*"
-  resource_group_name         = azurerm_resource_group.login-rg.name
-  network_security_group_name = azurerm_network_security_group.login-api-nsg.name
-}
-
-#api-nsg-http
-resource "azurerm_network_security_rule" "api-nsg-http" {
-  name                        = "login-api-http"
-  priority                    = 110
-  direction                   = "inbound"
-  access                      = "Allow"
-  protocol                    = "Tcp"
-  source_port_range           = "*"
-  destination_port_range      = "8080"
-  source_address_prefix       = "*"
-  destination_address_prefix  = "*"
-  resource_group_name         = azurerm_resource_group.login-rg.name
-  network_security_group_name = azurerm_network_security_group.login-api-nsg.name
 }
 
 #db-nsg
@@ -142,34 +82,3 @@ resource "azurerm_network_security_group" "db-nsg" {
   location            = azurerm_resource_group.login-rg.location
   resource_group_name = azurerm_resource_group.login-rg.name
 }
-
-#db-nsg-ssh
-resource "azurerm_network_security_rule" "db-nsg-ssh" {
-  name                        = "login-db-ssh"
-  priority                    = 100
-  direction                   = "inbound"
-  access                      = "Allow"
-  protocol                    = "Tcp"
-  source_port_range           = "*"
-  destination_port_range      = "22"
-  source_address_prefix       = "*"
-  destination_address_prefix  = "*"
-  resource_group_name         = azurerm_resource_group.login-rg.name
-  network_security_group_name = azurerm_network_security_group.login-db-nsg.name
-}
-
-#db-nsg-http
-resource "azurerm_network_security_rule" "db-nsg-http" {
-  name                        = "login-db-http"
-  priority                    = 110
-  direction                   = "inbound"
-  access                      = "Allow"
-  protocol                    = "Tcp"
-  source_port_range           = "*"
-  destination_port_range      = "5432"
-  source_address_prefix       = "*"
-  destination_address_prefix  = "*"
-  resource_group_name         = azurerm_resource_group.login-rg.name
-  network_security_group_name = azurerm_network_security_group.login-db-nsg.name
-}
-
