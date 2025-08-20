@@ -173,6 +173,25 @@ resource "azurerm_network_security_rule" "db-postgres" {
   network_security_group_name = azurerm_network_security_group.db-nsg.name
 }
 
+#web nic
+resource "azurerm_network_interface" "web-nic" {
+  name                = "login-web-nic"
+  location            = azurerm_resource_group.login-rg.location
+  resource_group_name = azurerm_resource_group.login-rg.name
+
+  ip_configuration {
+    name                          = "internal"
+    subnet_id                     = azurerm_subnet.web-sn.id
+    private_ip_address_allocation = "Dynamic"
+    public_ip_address_id          = azurerm_public_ip.web-pip
+  }
+}
+
+#web nic nsg asc
+resource "azurerm_network_interface_security_group_association" "login-web-nic-nsg-asc" {
+  network_interface_id      = azurerm_network_interface.web-nic.id
+  network_security_group_id = azurerm_network_security_group.web-nsg.id
+}
 
 
 
