@@ -15,6 +15,7 @@ variable vnet_name {
 
 #vnet address space
 variable vnet_address_space {
+  type = list(string)
   description ="please input vnet address space"
 }
 
