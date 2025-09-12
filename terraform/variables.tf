@@ -91,19 +91,19 @@ variable "nics" {
   default = [
   {
     name          = "web-nic"
-    subnet_key    = "web-subnet"
+    subnet_key    = "frontend"
     public_ip_key = "web"
     nsg_key       = "frontend"
   },
   {
     name          = "api-nic"
-    subnet_key    = "api-subnet"
+    subnet_key    = "backend"
     public_ip_key = "api"
     nsg_key       = "backend"
   },
   {
     name          = "db-nic"
-    subnet_key    = "db-subnet"
+    subnet_key    = "loadbalancer"
     public_ip_key = "db"
     nsg_key       = "database"
   }
