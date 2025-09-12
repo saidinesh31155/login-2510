@@ -17,6 +17,7 @@ variable vnet_name {
 variable vnet_address_space {
   type = list(string)
   description ="please input vnet address space"
+  default     = ["10.0.0.0/16"]
 }
 
 #vnet public subnets
