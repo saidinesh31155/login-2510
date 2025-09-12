@@ -92,8 +92,6 @@ resource "azurerm_network_interface" "nic" {
     # Select the subnet based on whether the key is in public or private subnet map
     subnet_id = contains(keys(var.public_subnets_addresses), each.value.subnet_key) ? azurerm_subnet.public_subnets[each.value.subnet_key].id : azurerm_subnet.private_subnets[each.value.subnet_key].id
     
-    network_security_group_id = azurerm_network_security_group.network_security_groups[each.value.nsg_key].id
-    
     private_ip_address_allocation = "Dynamic"
 
     # Only assign public IP if key is provided (non-empty string)
@@ -103,6 +101,17 @@ resource "azurerm_network_interface" "nic" {
       null
     )
   }
+}
+
+#nic nsg asc
+resource "azurerm_network_interface_security_group_association" "nic_nsg_assoc" {
+  for_each = {
+    for nic in var.nics : nic.name => nic
+    if nic.nsg_key != ""
+  }
+
+  network_interface_id      = azurerm_network_interface.nic[each.key].id
+  network_security_group_id = azurerm_network_security_group.network_security_groups[each.value.nsg_key].id
 }
 
 
