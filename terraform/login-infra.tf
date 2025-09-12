@@ -86,6 +86,9 @@ resource "azurerm_network_interface" "nic" {
   location            = azurerm_resource_group.login-rg.location
   resource_group_name = azurerm_resource_group.login-rg.name
 
+   # Attach NSG to NIC
+  network_security_group_id = azurerm_network_security_group.network_security_groups[each.value.nsg_key].id
+
   ip_configuration {
     name                          = "internal"
 
