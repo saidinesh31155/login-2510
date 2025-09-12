@@ -86,15 +86,14 @@ resource "azurerm_network_interface" "nic" {
   location            = azurerm_resource_group.login-rg.location
   resource_group_name = azurerm_resource_group.login-rg.name
 
-   # Attach NSG to NIC
-  network_security_group_id = azurerm_network_security_group.network_security_groups[each.value.nsg_key].id
-
   ip_configuration {
     name                          = "internal"
 
     # Select the subnet based on whether the key is in public or private subnet map
     subnet_id = contains(keys(var.public_subnets_addresses), each.value.subnet_key) ? azurerm_subnet.public_subnets[each.value.subnet_key].id : azurerm_subnet.private_subnets[each.value.subnet_key].id
-
+    
+    network_security_group_id = azurerm_network_security_group.network_security_groups[each.value.nsg_key].id
+    
     private_ip_address_allocation = "Dynamic"
 
     # Only assign public IP if key is provided (non-empty string)
