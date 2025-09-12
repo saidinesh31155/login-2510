@@ -98,9 +98,11 @@ resource "azurerm_network_interface" "nic" {
     private_ip_address_allocation = "Dynamic"
 
     # Only assign public IP if key is provided (non-empty string)
-    public_ip_address_id = each.value.public_ip_key != "" ?
+    public_ip_address_id =(
+      each.value.public_ip_key != "" ?
       azurerm_public_ip.public_ip_names[each.value.public_ip_key].id :
       null
+    )
   }
 }
 
