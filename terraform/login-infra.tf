@@ -106,15 +106,6 @@ resource "azurerm_network_interface" "nic" {
   }
 }
 
-#nic nsg asc
-resource "azurerm_network_interface_security_group_association" "nic_nsg_assoc" {
-  for_each = azurerm_network_interface.nic
-
-  network_interface_id      = each.value.id
-  network_security_group_id = azurerm_network_security_group.network_security_groups[
-    var.nics[lookup(keys(azurerm_network_interface.nic), each.key)].nsg_key
-      ].id
-}
 
 
 
