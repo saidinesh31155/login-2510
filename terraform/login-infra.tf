@@ -81,16 +81,25 @@ resource "azurerm_network_interface" "nic" {
   for_each = {
     for nic in var.nics : nic.name => nic
   }
-
+ 
   name                = each.value.name
   location            = azurerm_resource_group.login-rg.location
   resource_group_name = azurerm_resource_group.login-rg.name
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                     = azurerm_subnet.public_subnets[each.value.subnet_key].id
+
+    # Select the subnet based on whether the key is in public or private subnet map
+    subnet_id = contains(keys(var.public_subnets_addresses), each.value.subnet_key)
+      ? azurerm_subnet.public_subnets[each.value.subnet_key].id
+      : azurerm_subnet.private_subnets[each.value.subnet_key].id
+
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.public_ip_names[each.value.public_ip_key].id
+
+    # Only assign public IP if key is provided (non-empty string)
+    public_ip_address_id = each.value.public_ip_key != "" ?
+      azurerm_public_ip.public_ip_names[each.value.public_ip_key].id :
+      null
   }
 }
 

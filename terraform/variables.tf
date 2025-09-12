@@ -81,6 +81,7 @@ variable nsg_rules {
 
 #network interfaces
 variable "nics" {
+  description = "List of NICs to create"
   type = list(object({
     name         = string
     subnet_key   = string     # must match a key in public_subnets or private_subnets
@@ -92,19 +93,19 @@ variable "nics" {
   {
     name          = "web-nic"
     subnet_key    = "frontend"
-    public_ip_key = "web"
+    public_ip_key = "frontend"
     nsg_key       = "frontend"
   },
   {
     name          = "api-nic"
     subnet_key    = "backend"
-    public_ip_key = "api"
+    public_ip_key = "backend"
     nsg_key       = "backend"
   },
   {
     name          = "db-nic"
-    subnet_key    = "loadbalancer"
-    public_ip_key = "db"
+    subnet_key    = "database"
+    public_ip_key = ""
     nsg_key       = "database"
   }
 ]
