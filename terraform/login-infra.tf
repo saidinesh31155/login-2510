@@ -93,9 +93,7 @@ resource "azurerm_network_interface" "nic" {
     name                          = "internal"
 
     # Select the subnet based on whether the key is in public or private subnet map
-    subnet_id = contains(keys(var.public_subnets_addresses), each.value.subnet_key)
-      ? azurerm_subnet.public_subnets[each.value.subnet_key].id
-      : azurerm_subnet.private_subnets[each.value.subnet_key].id
+    subnet_id = contains(keys(var.public_subnets_addresses), each.value.subnet_key) ? azurerm_subnet.public_subnets[each.value.subnet_key].id : azurerm_subnet.private_subnets[each.value.subnet_key].id
 
     private_ip_address_allocation = "Dynamic"
 
