@@ -26,7 +26,7 @@ variable "custom_data_path" {
   description = "Path to custom data script"
 }
 
-variable "ssh_public_key_path" {
+variable "ssh_public_key" {
   type        = string
   description = "Path to SSH public key"
   default     = "~/.ssh/id_rsa.pub"
