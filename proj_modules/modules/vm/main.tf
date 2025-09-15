@@ -5,7 +5,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   location            = var.rg_location
   size                = var.vm_size
   admin_username      = var.admin_username
-  custom_data         = filebase64("var.custom_data_path")
+  custom_data_path    = filebase64("var.custom_data_path")
   network_interface_ids = [var.network_interface_id]
 
   admin_ssh_key {
